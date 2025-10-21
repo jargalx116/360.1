@@ -1,0 +1,45 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+locale: en
+publish_mode: editorial_workflow
+
+collections:
+  - label: "Store"
+    name: "store"
+    files:
+      - label: "Items"
+        name: "items"
+        file: "items.json"
+        format: json
+        description: "Marketplace catalog"
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: list
+            allow_add: true
+            collapsed: true
+            summary: "{{fields.id}} — {{fields.title}} ({{fields.category}})"
+            fields:
+              - {label: "ID", name: "id", widget: "string"}
+              - {label: "Title", name: "title", widget: "string"}
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options: ["PUBG Account","ML account","steam account","standoff 2 account"]
+              - {label: "Login method", name: "login_method", widget: "string"}
+              - {label: "Price", name: "price", widget: "string"}
+              - label: "Images"
+                name: "images"
+                widget: list
+                field: {label: "Image", name: "image", widget: "image"}
+              - label: "Contact"
+                name: "contact"
+                widget: object
+                fields:
+                  - {label: "Messenger", name: "messenger", widget: "string", default: "360j"}
+                  - {label: "Phone", name: "phone", widget: "string", default: "+97600000000"}
