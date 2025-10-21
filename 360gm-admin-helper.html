@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>360GM — Admin Helper</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Oxanium:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0f16;--panel:#111827;--muted:#9fb3c7;--text:#eaf6ff;--border:rgba(255,255,255,.08);--accent:#00eaff;--accent2:#6b5cff}
+*{box-sizing:border-box}html,body{height:100%}
+body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto;color:var(--text);background:radial-gradient(1200px 600px at 10% -20%, rgba(0,234,255,.18), transparent 40%),radial-gradient(900px 600px at 110% -10%, rgba(107,92,255,.10), transparent 40%),linear-gradient(180deg, var(--bg), #06080e)}
+.container{width:min(1200px,94%);margin:28px auto}
+.h{font-family:Oxanium,Inter;letter-spacing:.5px;margin:0 0 2px;font-size:24px}
+.sub{margin:0 0 18px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:420px 1fr;gap:16px}
+@media (max-width:980px){.grid{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg, rgba(17,24,39,.95), rgba(12,18,32,.95));border:1px solid var(--border);border-radius:14px;padding:14px}
+label{display:block;font-size:13px;color:var(--muted);margin:10px 0 6px}
+.input,.select,textarea{width:100%;background:#0f1524;border:1px solid var(--border);color:var(--text);border-radius:10px;padding:12px 12px;font:inherit}
+textarea{min-height:80px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.btn{background:linear-gradient(180deg, rgba(0,234,255,.9), rgba(107,92,255,.9));color:#061018;border:none;padding:10px 14px;border-radius:12px;font-weight:800;cursor:pointer}
+.btn.sec{background:transparent;color:var(--text);border:1px solid var(--border)}
+.help{font-size:12px;color:var(--muted)}
+.code{background:#0c1322;border:1px solid var(--border);border-radius:12px;padding:10px;min-height:220px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;overflow:auto}
+.drop{margin-top:6px;border:1px dashed var(--border);border-radius:12px;padding:16px;text-align:center;background:rgba(10,20,36,.6)}
+#thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.th{border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.th img{width:100%;height:90px;object-fit:cover;display:block}
+.kbd{padding:2px 6px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:#0b1322}
+.small{font-size:12px;color:var(--muted)}
+footer{margin-top:14px;color:var(--muted);font-size:12px}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1 class="h">GameBaz — Admin Helper</h1>
+    <p class="sub">Оффлайн JSON үүсгэгч. Форм бөглөөд Generate хийж, JSON-оо copy/paste хийнэ.</p>
+
+    <div class="grid">
+      <div class="card">
+        <label>Category</label>
+        <select id="category" class="select">
+          <option>PUBG Account</option>
+          <option>ML account</option>
+          <option>steam account</option>
+          <option>standoff 2 account</option>
+        </select>
+
+        <div class="row">
+          <div>
+            <label>ID</label>
+            <input id="id" class="input" placeholder="ex: PUBG-0001"/>
+          </div>
+          <div>
+            <label>Login method</label>
+            <input id="login" class="input" placeholder="Email / Google / Steam / Moonton"/>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>Title</label>
+            <input id="title" class="input" placeholder="ex: PUBG Conqueror — Lvl 62"/>
+          </div>
+          <div>
+            <label>Price</label>
+            <input id="price" class="input" placeholder="MNT 250,000 or Ask"/>
+          </div>
+        </div>
+
+        <label>Description (optional)</label>
+        <textarea id="desc" class="input" placeholder="Short details (optional)"></textarea>
+
+        <div class="row">
+          <div>
+            <label>Messenger username</label>
+            <input id="msgr" class="input" placeholder="360j"/>
+          </div>
+          <div>
+            <label>Phone</label>
+            <input id="phone" class="input" placeholder="+97600000000"/>
+          </div>
+        </div>
+
+        <label>Зургууд</label>
+        <div id="drop" class="drop">
+          <p class="small">Зургаа энд чирж оруул эсвэл <button class="btn sec" type="button" id="pick">Choose files</button></p>
+          <input id="file" type="file" accept="image/*" multiple style="display:none"/>
+          <div id="thumbs"></div>
+        </div>
+
+        <div class="btns">
+          <button class="btn" type="button" id="build">Generate JSON</button>
+          <button class="btn sec" type="button" id="copy">Copy JSON</button>
+          <button class="btn sec" type="button" id="zip">Download images.zip</button>
+          <button class="btn sec" type="button" id="reset">Reset</button>
+        </div>
+        <p class="help">⟳ Зургууд автоматаар <span class="kbd">&lt;ID&gt;-1.jpg</span>, <span class="kbd">&lt;ID&gt;-2.png</span> … гэж нэрлэнэ. JSON-д <span class="kbd">images/&lt;ID&gt;-N.ext</span> гэж орно.</p>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <strong>Гарах код</strong>
+          <button class="btn sec" id="copyTop">Copy</button>
+        </div>
+        <pre id="out" class="code">{}</pre>
+        <footer>1) Форм бөглө 2) Generate JSON 3) Copy → <b>items.json</b> массивт шинэ объект болгож наа 4) images.zip-ээ задлаад <span class="kbd">images/</span> руу хуул.</footer>
+      </div>
+    </div>
+  </div>
+
+<script>
+const el = id => document.getElementById(id);
+const drop = el('drop'); const file = el('file'); const pick = el('pick'); const thumbs = el('thumbs'); const out = el('out');
+let files = [];
+pick.onclick = () => file.click();
+file.onchange = e => addFiles([...e.target.files]);
+['dragenter','dragover'].forEach(ev=> drop.addEventListener(ev, e=>{ e.preventDefault(); drop.style.borderColor='rgba(0,234,255,.6)'; }));
+['dragleave','drop'].forEach(ev=> drop.addEventListener(ev, e=>{ e.preventDefault(); drop.style.borderColor='var(--border)'; }));
+drop.addEventListener('drop', e => { addFiles([...e.dataTransfer.files].filter(f=>f.type.startsWith('image/'))); });
+function addFiles(list){
+  files = files.concat(list);
+  thumbs.innerHTML = files.map((f,i)=>{
+    const url = URL.createObjectURL(f);
+    return `<div class="th"><img src="${url}" alt="img${i}"><div class="small" style="padding:6px">${f.name}</div></div>`;
+  }).join('');
+}
+function getExt(name){
+  const m = name.toLowerCase().match(/\.(png|jpg|jpeg|webp|gif)$/); return m ? m[1] : 'jpg';
+}
+function buildJSON(){
+  const id = el('id').value.trim() || 'NEW-01';
+  const title = el('title').value.trim() || 'Untitled';
+  const category = el('category').value;
+  const login = el('login').value.trim();
+  const price = el('price').value.trim();
+  const desc = el('desc').value.trim();
+  const messenger = el('msgr').value.trim() || '360j';
+  const phone = el('phone').value.trim() || '+97600000000';
+  const images = files.length ? files.map((f,i)=> `images/${id}-${i+1}.${getExt(f.name)}`) : [];
+  const obj = { id, title, category, login_method: login, price, images, contact:{ messenger, phone } };
+  if (desc) obj.desc = desc;
+  out.textContent = JSON.stringify(obj, null, 2);
+  return {obj, id};
+}
+el('build').onclick = buildJSON;
+function copyJSON(){
+  const range = document.createRange(); range.selectNode(out);
+  const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+  try { document.execCommand('copy'); } catch(e){}
+  sel.removeAllRanges(); alert('Copied ✓ Paste into items.json');
+}
+el('copy').onclick = copyJSON; el('copyTop').onclick = copyJSON;
+el('reset').onclick = ()=>{ files=[]; thumbs.innerHTML=''; out.textContent='{}'; document.querySelectorAll('input, textarea').forEach(i=>i.value=''); };
+el('zip').onclick = async ()=>{
+  if (!files.length){ alert('Эхлээд зураг сонгоно уу'); return; }
+  const {id} = buildJSON();
+  if (!window.JSZip){ alert('JSZip ачаалагдаагүй (интернет хэрэгтэй).'); return; }
+  const zip = new JSZip();
+  for (let i=0;i<files.length;i++){
+    const f = files[i]; const ext='.'+getExt(f.name); const name=`images/${id}-${i+1}${ext}`;
+    const buf = await f.arrayBuffer(); zip.file(name, buf);
+  }
+  const blob = await zip.generateAsync({type:'blob'}); saveAs(blob, `${id}-images.zip`);
+};
+</script>
+</body>
+</html>

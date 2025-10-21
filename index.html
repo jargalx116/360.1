@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>360j — Game Market</title>
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.ico" sizes="any">
+<meta property="og:title" content="360j — Digital Game Accounts"/>
+<meta property="og:description" content="PUBG, ML, Steam, Standoff 2 accounts. Contact via Messenger."/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="images/uploads/og-image.png"/>
+<style>
+:root{ --bg:#03050a; --bg2:#071018; --text:#eaf7ff; --muted:#8fb3c6; --border:rgba(255,255,255,.06); }
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto;color:var(--text);
+  background:radial-gradient(1200px 600px at 10% -20%, rgba(0,234,255,.22), transparent 40%),
+             radial-gradient(900px 600px at 110% -10%, rgba(107,92,255,.12), transparent 40%),
+             linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:.35;
+  background:linear-gradient(transparent 96%, rgba(0,234,255,.07) 98%),linear-gradient(90deg, transparent 96%, rgba(107,92,255,.07) 98%);
+  background-size:8px 8px;}
+.container{width:min(1180px,92%);margin-inline:auto}
+a{text-decoration:none;color:inherit}
+header{position:sticky;top:0;z-index:30}
+.head{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);backdrop-filter:saturate(160%) blur(8px);
+  background:linear-gradient(180deg, rgba(7,16,24,.75), rgba(7,16,24,.55))}
+.brand{display:flex;gap:10px;align-items:center}
+.brand img{width:28px;height:28px;border-radius:6px}
+.brand strong{font-family:Oxanium,Inter;letter-spacing:.6px}
+.nav{display:flex;gap:14px;margin-left:8px;font-size:14px}
+.note{margin-left:auto;font-size:12px;color:var(--muted)}
+.hero{padding:18px 0 10px}
+.hero h1{font-family:Oxanium,Inter;margin:0 0 8px;font-size:26px;letter-spacing:.6px}
+.hero p{margin:0;color:var(--muted)}
+.categories{display:grid;gap:12px;margin:14px 0 10px;grid-template-columns:repeat(4,1fr)}
+@media (max-width:900px){.categories{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.categories{grid-template-columns:repeat(2,1fr)}}
+.cat{position:relative;overflow:hidden;border-radius:16px;cursor:pointer;border:1px solid var(--border);background:rgba(10,20,28,.6);transition:box-shadow .25s ease, transform .2s ease}
+.cat:hover{box-shadow:0 12px 28px rgba(0,0,0,.45), 0 0 30px rgba(0,234,255,.18);transform:translateY(-2px)}
+.imgwrap{width:100%;aspect-ratio:1/1;display:grid;place-items:center;background:#0a1220}
+.imgwrap img{width:78%;height:78%;object-fit:contain;display:block}
+.cat span{position:absolute;left:8px;bottom:8px;padding:6px 10px;border-radius:12px;background:linear-gradient(90deg, rgba(0,234,255,.35), rgba(107,92,255,.35));backdrop-filter:blur(6px);font-weight:700;font-size:13px}
+.toolbar{display:grid;grid-template-columns:1fr 200px;gap:10px;margin:10px 0 6px}
+.input,.select{background:rgba(12,20,28,.9);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:12px 14px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:8px 0 24px}
+@media (max-width:1024px){.grid{grid-template-columns:repeat(2,1fr)}.toolbar{grid-template-columns:1fr 160px}}
+@media (max-width:640px){.grid{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}.hero h1{font-size:22px}}
+.card{position:relative}
+.card-inner{background:linear-gradient(180deg, rgba(17,24,48,.95), rgba(12,19,38,.95));border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:box-shadow .25s ease, transform .2s ease}
+.card:hover .card-inner{box-shadow:0 16px 34px rgba(0,0,0,.45), 0 0 34px rgba(0,234,255,.18);transform:translateY(-2px)}
+.thumb{aspect-ratio:16/10;background:#0b1024;display:grid;place-items:center}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.content{padding:12px}
+.badge{display:inline-flex;align-items:center;gap:8px;border-radius:999px;border:1px solid rgba(0,234,255,.35);background:rgba(0,234,255,.12);padding:4px 10px;font-size:11px}
+.title{font-family:Oxanium,Inter;margin:8px 0 4px;font-size:16px}
+.meta{font-size:13px;color:var(--muted)}
+.price{margin-top:8px;font-weight:800;color:#00eaff}
+.actions{display:flex;gap:8px;margin-top:10px}
+.btn{flex:1;display:inline-flex;justify-content:center;align-items:center;gap:8px;font-weight:700;border-radius:12px;padding:10px 12px;border:1px solid var(--border);background:linear-gradient(180deg, #1e2448, #141a33);color:var(--text);cursor:pointer}
+.btn.primary{background:linear-gradient(180deg, rgba(0,234,255,.9), rgba(107,92,255,.9));color:#071018;text-shadow:0 1px 0 rgba(255,255,255,.35)}
+.btn.ghost{background:transparent}
+.footer{border-top:1px solid var(--border);padding:16px 0 36px;color:var(--muted);font-size:13px}
+dialog::backdrop{background:rgba(5,7,12,.7)}
+dialog{border:none;border-radius:16px;padding:0;max-width:960px;width:92vw;background:linear-gradient(180deg, rgba(16,22,44,.97), rgba(10,15,30,.97));color:var(--text);border:1px solid var(--border)}
+.modal-head{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid var(--border)}
+.modal-body{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;padding:14px}
+@media (max-width:820px){.modal-body{grid-template-columns:1fr}}
+.close{background:none;border:1px solid var(--border);color:var(--text);border-radius:10px;padding:6px 10px;cursor:pointer}
+.gallery{position:relative;border-radius:12px;overflow:hidden;background:#0b1024}
+.slides{display:flex;transition:transform .35s ease}
+.slide{min-width:100%;aspect-ratio:16/10;display:grid;place-items:center}
+.slide img{width:100%;height:100%;object-fit:cover}
+.navBtn{position:absolute;top:50%;transform:translateY(-50%);background:linear-gradient(180deg, rgba(0,234,255,.4), rgba(107,92,255,.4));border:1px solid var(--border);color:#000;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;cursor:pointer}
+.prev{left:10px}.next{right:10px}
+.dots{position:absolute;left:0;right:0;bottom:8px;display:flex;gap:6px;justify-content:center}
+.dots button{width:8px;height:8px;border-radius:50%;border:none;background:rgba(255,255,255,.35);cursor:pointer}
+.dots button.active{background:#fff}
+</style>
+</head>
+<body>
+<header>
+  <div class="container head">
+    <div class="brand"><img src="logo360.jpg" alt="Logo"><strong>360j</strong></div>
+    <nav class="nav"><a href="#catalog">Catalog</a><a href="#contact">Contact</a><a href="#about">About</a></nav>
+    <span class="note">No on-site payments • Contact seller directly</span>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1>Neon Gamer Catalog</h1>
+    <p>Tap a category to filter.</p>
+
+    <section id="categories" class="categories">
+      <button class="cat" data-cat="PUBG Account"><span>PUBG Account</span><div class="imgwrap"><img src="images/pubg.png" alt="PUBG" onerror="this.src='images/uploads/pubg.png'"></div></button>
+      <button class="cat" data-cat="ML account"><span>ML account</span><div class="imgwrap"><img src="images/mobilelegends.jpg" alt="ML" onerror="this.src='images/uploads/mobilelegends.jpg'"></div></button>
+      <button class="cat" data-cat="steam account"><span>steam account</span><div class="imgwrap"><img src="images/steam.png" alt="Steam" onerror="this.src='images/uploads/steam.png'"></div></button>
+      <button class="cat" data-cat="standoff 2 account"><span>standoff 2 account</span><div class="imgwrap"><img src="images/standoff2.png" alt="SO2" onerror="this.src='images/uploads/standoff2.png'"></div></button>
+    </section>
+
+    <div class="toolbar">
+      <input id="search" class="input" placeholder="Search title or ID…">
+      <select id="category" class="select">
+        <option value="">All Categories</option>
+        <option>PUBG Account</option>
+        <option>ML account</option>
+        <option>steam account</option>
+        <option>standoff 2 account</option>
+      </select>
+    </div>
+  </section>
+
+  <section id="catalog" class="grid" aria-live="polite"></section>
+
+  <section id="about" style="padding:10px 0 24px">
+    <h2 style="font-family:Oxanium; font-size:18px; margin-bottom:8px">About</h2>
+    <p style="color:var(--muted); max-width:760px">Digital-only listings. Each card includes Messenger and phone.</p>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div id="contact" style="display:flex; gap:12px; flex-wrap:wrap; align-items:center">
+      <strong>Contact:</strong>
+      <a class="badge" href="https://m.me/360j" target="_blank" rel="noopener">Message on Messenger</a>
+      <a class="badge" href="tel:+97600000000">+97600000000</a>
+    </div>
+    <p style="margin-top:12px">© <span id="year"></span> 360j. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+let items = [];
+const catalog = document.querySelector('#catalog');
+const q = document.querySelector('#search');
+const cat = document.querySelector('#category');
+
+function badge(text){return `<span class="badge">${text}</span>`}
+function cardTemplate(item){
+  const img0 = (item.images && item.images[0]) ? item.images[0] : '';
+  const msgr = (item.contact && item.contact.messenger) ? item.contact.messenger : '360j';
+  const pid = encodeURIComponent(item.id || '');
+  return `
+  <article class="card" data-id="${item.id || ''}">
+    <div class="card-inner">
+      <div class="thumb"><img src="${img0}" alt="${item.title || ''}" loading="lazy"></div>
+      <div class="content">
+        ${badge(item.category || '')}
+        <h3 class="title">${item.title || ''}</h3>
+        <div class="meta">ID: <strong>${item.id || ''}</strong> • Login: ${item.login_method || ''}</div>
+        <div class="price">${item.price || ''}</div>
+        <div class="actions">
+          <button class="btn primary" onclick="openDetail('${item.id || ''}')">View details</button>
+          <a class="btn ghost" href="https://m.me/${msgr}?ref=${pid}" target="_blank" rel="noopener">Messenger</a>
+        </div>
+      </div>
+    </div>
+  </article>`;
+}
+function render(list){ catalog.innerHTML = list.map(cardTemplate).join(''); }
+function filter(){
+  const term = (q.value || '').toLowerCase().trim();
+  const c = cat.value;
+  const list = items.filter(x => (!c || x.category===c) && (term==='' || [x.title,x.id,x.category,x.login_method].join(' ').toLowerCase().includes(term)) );
+  render(list);
+}
+document.getElementById('categories').addEventListener('click', e=>{
+  const card = e.target.closest('.cat'); if(!card) return;
+  cat.value = card.dataset.cat; filter(); window.scrollTo({top:document.querySelector('#catalog').offsetTop-8, behavior:'smooth'});
+});
+[q,cat].forEach(el=>el.addEventListener('input', filter));
+
+function buildDots(count, idx){return Array.from({length:count},(_,i)=>`<button ${i===idx?'class="active"':''} data-i="${i}"></button>`).join('')}
+function openDetail(id){
+  const item = items.find(i=>i.id===id); if(!item) return;
+  let dlg = document.getElementById('detail');
+  if(!dlg){
+    const wrap = document.createElement('div');
+    wrap.innerHTML = `<dialog id="detail"><div class="modal-head"><strong id="mTitle">Listing</strong><button class="close" onclick="detail.close()">Close</button></div><div class="modal-body"><div class="gallery"><div class="slides" id="mSlides"></div><button class="navBtn prev" id="btnPrev">‹</button><button class="navBtn next" id="btnNext">›</button><div class="dots" id="mDots"></div></div><div><p id="mMeta" class="meta"></p><div class="info-list" id="mInfo"></div><div class="price" id="mPrice"></div><div class="actions" style="margin-top:14px"><a id="mMsgr" class="btn primary" target="_blank" rel="noopener">Message on Messenger</a><a id="mPhone" class="btn" href="#">Call</a></div></div></div></dialog>`;
+    document.body.appendChild(wrap.firstChild);
+    dlg = document.getElementById('detail');
+  }
+  document.getElementById('mTitle').textContent = item.title || '';
+  document.getElementById('mMeta').textContent  = `${item.category || ''} • ID: ${item.id || ''} • Login: ${item.login_method || ''}`;
+  document.getElementById('mPrice').textContent = item.price || '';
+  document.getElementById('mInfo').innerHTML = `<div><span>Category</span><div>${item.category || ''}</div></div><div><span>ID</span><div>${item.id || ''}</div></div><div><span>Login Method</span><div>${item.login_method || ''}</div></div>`;
+  const ref = encodeURIComponent(item.id || '');
+  document.getElementById('mMsgr').href = `https://m.me/360j?ref=${ref}`;
+  const phone = document.getElementById('mPhone'); phone.href = `tel:+97600000000`; phone.textContent = `Call +97600000000`;
+  const slides = document.getElementById('mSlides'); const dots = document.getElementById('mDots'); let index = 0;
+  slides.innerHTML = (item.images || []).map(src=>`<div class="slide"><img src="${src}" alt="${item.title || ''}"></div>`).join('');
+  dots.innerHTML = buildDots((item.images || []).length, 0);
+  function show(i){ const n = (item.images || []).length || 1; index=(i+n)%n; slides.style.transform = `translateX(${-100*index}%)`; [...dots.children].forEach((d,di)=>d.classList.toggle('active', di===index)); }
+  document.getElementById('btnPrev').onclick = ()=> show(index-1);
+  document.getElementById('btnNext').onclick = ()=> show(index+1);
+  dots.querySelectorAll('button').forEach(btn=> btn.onclick = ()=> show(+btn.dataset.i));
+  show(0); dlg.showModal();
+}
+
+// Load items.json (array OR {items:[]})
+(async () => {
+  try{
+    const res = await fetch('items.json', {cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const data = await res.json();
+    items = Array.isArray(data) ? data : (Array.isArray(data.items) ? data.items : []);
+  }catch(e){
+    items = [
+      { id:'PUBG-1001', title:'PUBG — Sample', category:'PUBG Account', login_method:'Email login', price:'MNT 250,000', images:['images/pubg.png'], contact:{ messenger:'360j', phone:'+97600000000' } },
+      { id:'ML-2001',   title:'ML — Sample',   category:'ML account',   login_method:'Moonton login', price:'Ask', images:['images/mobilelegends.jpg'], contact:{ messenger:'360j', phone:'+97600000000' } },
+      { id:'STEAM-3001',title:'Steam — Sample',category:'steam account', login_method:'Steam login', price:'$50', images:['images/steam.png'], contact:{ messenger:'360j', phone:'+97600000000' } },
+      { id:'SO2-4001',  title:'Standoff 2 — Sample', category:'standoff 2 account', login_method:'Google login', price:'MNT 180,000', images:['images/standoff2.png'], contact:{ messenger:'360j', phone:'+97600000000' } }
+    ];
+  }
+  render(items);
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

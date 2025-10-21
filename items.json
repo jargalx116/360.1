@@ -1,0 +1,60 @@
+{
+  "items": [
+    {
+      "id": "PUBG-1001",
+      "title": "PUBG — Sample",
+      "category": "PUBG Account",
+      "login_method": "Email login",
+      "price": "MNT 250,000",
+      "images": [
+        "images/pubg.png"
+      ],
+      "contact": {
+        "messenger": "360j",
+        "phone": "+97600000000"
+      }
+    },
+    {
+      "id": "ML-2001",
+      "title": "ML — Sample",
+      "category": "ML account",
+      "login_method": "Moonton login",
+      "price": "Ask",
+      "images": [
+        "images/mobilelegends.jpg"
+      ],
+      "contact": {
+        "messenger": "360j",
+        "phone": "+97600000000"
+      }
+    },
+    {
+      "id": "STEAM-3001",
+      "title": "Steam — Sample",
+      "category": "steam account",
+      "login_method": "Steam login",
+      "price": "$50",
+      "images": [
+        "images/steam.png"
+      ],
+      "contact": {
+        "messenger": "360j",
+        "phone": "+97600000000"
+      }
+    },
+    {
+      "id": "SO2-4001",
+      "title": "Standoff 2 — Sample",
+      "category": "standoff 2 account",
+      "login_method": "Google login",
+      "price": "MNT 180,000",
+      "images": [
+        "images/standoff2.png"
+      ],
+      "contact": {
+        "messenger": "360j",
+        "phone": "+97600000000"
+      }
+    }
+  ]
+}
